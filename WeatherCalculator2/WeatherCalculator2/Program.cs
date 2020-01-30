@@ -4,7 +4,7 @@ namespace WeatherCalculator2
 {
     class Program
     {
-        static double Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("### Weather Calculator 2");
 
@@ -30,10 +30,12 @@ namespace WeatherCalculator2
                 RelativeHumidity = int.Parse(input);
                 double Heat;
                 Heat = 0.5 * (temperature + 61.0 + ((temperature - 68.0) * 1.2) + (RelativeHumidity * 0.094));
-           
 
-
+                Console.WriteLine("The Heat Index is... " + Heat);
             }
+
+
+
             else
             {
                 Console.WriteLine("Enter the Wind Speed");
@@ -41,20 +43,13 @@ namespace WeatherCalculator2
                 input = Console.ReadLine();
 
                 windSpeed = int.Parse(input);
+
+                windChill = 35.74 + (0.6125 * temperature) - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * temperature * Math.Pow(windSpeed, 0.16);
+
+                Console.WriteLine("The wind chill is.. " + windChill);
             }
 
-            // Get the windspeed from the user
-            Console.WriteLine("Enter the wind speed");
-
-            input = Console.ReadLine();
-
-            windSpeed = int.Parse(input);
-
-            // Calculate the wind chill
-
-            windChill = 35.74 + (0.6125 * temperature) - 35.75 * Math.Pow(windSpeed, 0.16) + 0.4275 * temperature * Math.Pow(windSpeed, 0.16);
-
-            Console.WriteLine("The wind chill is " + windChill);
+            
         }
 
         private static double GetRelativeHumidity(double RelativeHumidity)
